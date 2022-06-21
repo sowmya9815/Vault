@@ -1,0 +1,46 @@
+<div class="row mt-5">
+    <div class="col-md-4 mb-3" *ngFor="let event of events">
+        <div class="card text-center">
+            <div class="card-body" *ngIf="adval;
+            else elseStatement" >
+            <div *ngIf="(event.stat === 'open')">
+                <h5 class="card-title">{{event.rollno}}</h5>
+                <p class="card-text">{{event.isd}}</p>
+                <p class="card-text">{{event.dept}}</p>
+                <!-- <a href="#" class="btn btn-success">{{event.stat}}</a> -->
+                <button (click)="changestatsapprove(event)" type="button" class="btn btn-success float-right">Approve</button>
+                <button (click)="changestatsreject(event)" type="button" class="btn btn-danger float-left">Reject</button>
+            </div>
+        </div>
+            <div class="card-footer text-muted">
+                {{event.email}}|{{event.stat}}
+            </div>
+            <ng-template #elseStatement>
+                <div class="card-body" *ngIf="(event.stat === 'Accepted');
+                else elseStatement" >
+                    <h5 class="card-title">{{event.rollno}}</h5>
+                    <p class="card-text">{{event.isd}}</p>
+                    <p class="card-text">{{event.dept}}</p>
+                    <a href="#" class="btn btn-success">{{event.stat}}</a>
+                </div>  
+                <ng-template #elseStatement>
+                    <div class="card-body" *ngIf="(event.stat === 'rejected');
+                    else elseStatement" >
+                        <h5 class="card-title">{{event.rollno}}</h5>
+                        <p class="card-text">{{event.isd}}</p>
+                        <p class="card-text">{{event.dept}}</p>
+                        <a href="#" class="btn btn-danger">{{event.stat}}</a>
+                    </div> 
+                    <ng-template #elseStatement>
+                    <div class="card-body">
+                        <h5 class="card-title">{{event.rollno}}</h5>
+                        <p class="card-text">{{event.isd}}</p>
+                        <p class="card-text">{{event.dept}}</p>
+                        <a href="#" class="btn btn-primary">{{event.stat}}</a>
+                    </div> 
+                </ng-template>
+                </ng-template>
+            </ng-template>
+        </div>
+    </div>
+</div>

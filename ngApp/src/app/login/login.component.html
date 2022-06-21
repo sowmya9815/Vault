@@ -1,0 +1,34 @@
+<div class="row pt-5">
+    <div class="col-md-6 mx-auto">
+        <div class="card rounded-0">
+            <div class="card-header">
+                <h3 class="mb-0">Login</h3>
+            </div>
+            <div class="card-body">
+                <div *ngIf="!userstatus">
+                    <small style="color: red;">Invalid email or password</small>
+                </div>
+                <form class="form" (ngSubmit)="loginUser()">
+                    <div class="form-group">
+                        <label for="">Email</label>
+                        <!-- <input [(ngModel)]="loginUserData.email" name="email" type="text" class="form-control rounded-0" required> -->
+                        <input  type="text" required #email="ngModel"
+                        [class.is-invalid]="email.invalid && email.touched"  class="form-control rounded-0"
+                         name="email"  [(ngModel)]="loginUserData.email">
+                         <small class="text-danger" [class.d-none]="email.valid || email.untouched">Email is required</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Password</label>
+                        <!-- <input [(ngModel)]="loginUserData.password" name="password" type="password" class="form-control rounded-0" required> -->
+                        <input  type="password" required #password="ngModel"
+                        [class.is-invalid]="password.invalid && password.touched"  class="form-control rounded-0"
+                         name="password"  [(ngModel)]="loginUserData.password">
+                         <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password is required</small>
+                    </div>
+                <br>
+                    <button [disabled]="email.errors || password.errors" type="submit" class="btn btn-success float-right">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
